@@ -1,0 +1,3 @@
+;this is a comment
+echo README.md <
+man

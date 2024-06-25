@@ -6,11 +6,11 @@
 #include "read_file.h"
 #define MAX_COMMAND_LENGTH 256
 #define MAX_PATH_LENGTH 128
+#define CONFIG_FILE_NAME "config.txt"
 int main(){
     char commandbuffer[MAX_COMMAND_LENGTH];
-    printf("welcome to my shell\n");
     bool exit = false;
-    Convert_to_instructions_and_execute("config.myshell");
+    Convert_to_instructions_and_execute(CONFIG_FILE_NAME);
     while(!exit){
     char pathbuffer[MAX_PATH_LENGTH];
     if (getcwd(pathbuffer, sizeof(pathbuffer)) != NULL) {

@@ -9,5 +9,8 @@ dump: dump the whole file to terminal
 clr: clear, crossplatform
 quit: quit
 funny: funny
+cbc: change background color
+ctc: change text color
+man: list full list of commands
 --------------------------------------------
-config.myshell: file that executes when shell starts
+config.txt: file that executes when shell starts.
