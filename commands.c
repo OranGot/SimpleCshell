@@ -42,7 +42,10 @@ bool id_and_execute(char *commandbuffer, char mode){
     char* specifier = strtok(NULL, " \n");
     char* flag = strtok(NULL, " \n");
     if(!strncmp(command, "cd", 3)){
+        if(specifier){
         chdir(specifier);
+        }
+
     }
     else if(!strncmp(command, "quit", 5)){
         return 1;
@@ -55,7 +58,7 @@ bool id_and_execute(char *commandbuffer, char mode){
             free(filecontents);
         }
         }
-        else{
+        else if(specifier){
             md(specifier);
         }
     }
@@ -65,8 +68,11 @@ bool id_and_execute(char *commandbuffer, char mode){
     else if(!strncmp(command, "clr", 4)){
         if(flag){
             if(!strncmp(flag, "<", 2)){
+                if(specifier){
                 FILE* file = fopen(specifier, "w");
                 fclose(file);
+                }   
+
             }
         }
         else{
@@ -75,34 +81,48 @@ bool id_and_execute(char *commandbuffer, char mode){
 
     }
     else if(!strncmp(command, "vanish", 7)){
+        if(specifier){
         remove(specifier);
+        }
     }
     else if(!strncmp(command, "new", 4)){
+        if(specifier){
         new(specifier);
+        }
+
     }
     else if(!strncmp(command, "dump", 5)){
+        if(specifier){
         dump(specifier);
+        }
+
     }
     else if(!strncmp(command, "cbc", 4)){
+        if(specifier){
         change_background_color(specifier);
+        }
     }
     else if(!strncmp(command, "ctc", 4)){
-        change_text_color(specifier);
+        if(specifier){
+            change_text_color(specifier);
+        }
     }
     else if(!strncmp(command, "echo", 5)){
-        if(flag){
+        if(flag && specifier){
         if(!strncmp(flag, "<", 2)){
             char* filecontents = Convert_file_to_string(specifier);
             echo(filecontents);
             free(filecontents);
         }
         }
-        else{
+        else if(specifier){
         echo(specifier);
         }
     }
     else if(!strncmp(command, "sexe", 5)){
+        if(specifier){
         Convert_to_instructions_and_execute(specifier);
+        }
     }
     else if(!strncmp(command, "man", 4)){
         printf("sexe: execute script\n"
@@ -178,5 +198,3 @@ void change_text_color(const char* CLR){
 void echo(const char* printval){
     printf("\n%s",printval);
 }
-
-

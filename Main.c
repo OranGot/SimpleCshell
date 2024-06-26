@@ -21,7 +21,5 @@ int main(){
         fgets(commandbuffer, MAX_COMMAND_LENGTH, stdin);
         exit = id_and_execute(commandbuffer, '1');
     }
-
-
     return 0;
 }
